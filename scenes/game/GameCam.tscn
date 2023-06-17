@@ -1,0 +1,328 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/theme/lerimama_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/gamecam_noise.tres" type="OpenSimplexNoise" id=2]
+[ext_resource path="res://scripts/hud/GameCam.gd" type="Script" id=3]
+
+[sub_resource type="NoiseTexture" id=1]
+width = 246
+height = 246
+noise = ExtResource( 2 )
+
+[node name="GameCam" type="Camera2D"]
+position = Vector2( 640, 308 )
+rotation = 3.14159
+rotating = true
+current = true
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+script = ExtResource( 3 )
+noise = ExtResource( 2 )
+decay_speed = 0.718
+
+[node name="TestUI" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="TestToggle" type="CheckBox" parent="TestUI"]
+margin_left = 32.0
+margin_top = 10.0
+margin_right = 96.0
+margin_bottom = 36.0
+theme = ExtResource( 1 )
+text = "test"
+
+[node name="TestHud" type="Control" parent="TestUI"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 1248.0
+margin_bottom = 612.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 1 )
+
+[node name="ResetViewBtn" type="Button" parent="TestUI/TestHud"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1008.0
+margin_top = -104.0
+margin_right = 1182.0
+margin_bottom = -78.0
+theme = ExtResource( 1 )
+text = "resetiraj pogled"
+
+[node name="ShakeBar" type="ProgressBar" parent="TestUI/TestHud"]
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -608.0
+margin_top = -55.0
+margin_right = 608.0
+margin_bottom = -29.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+max_value = 1.0
+
+[node name="TraumaBar" type="ProgressBar" parent="TestUI/TestHud"]
+modulate = Color( 0.12549, 1, 0, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -608.0
+margin_top = -24.0
+margin_right = 608.0
+margin_bottom = 2.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+max_value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZoomSlider" type="VSlider" parent="TestUI/TestHud"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -51.0
+margin_top = -300.0
+margin_right = -35.0
+margin_bottom = 212.0
+theme = ExtResource( 1 )
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="TimeSlider" type="VSlider" parent="TestUI/TestHud"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -302.0
+margin_right = 16.0
+margin_bottom = 209.0
+rect_scale = Vector2( -1, 1 )
+theme = ExtResource( 1 )
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="NoiseControl" type="Control" parent="TestUI/TestHud"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -516.0
+margin_right = 248.0
+margin_bottom = -151.0
+theme = ExtResource( 1 )
+
+[node name="NoiseVisual" type="TextureRect" parent="TestUI/TestHud/NoiseControl"]
+margin_right = 246.0
+margin_bottom = 246.0
+texture = SubResource( 1 )
+
+[node name="Seed" type="HSlider" parent="TestUI/TestHud/NoiseControl"]
+margin_left = 60.0
+margin_top = 260.0
+margin_right = 246.0
+margin_bottom = 276.0
+hint_tooltip = "Seed"
+
+[node name="Label" type="Label" parent="TestUI/TestHud/NoiseControl"]
+margin_top = 252.0
+margin_right = 48.0
+margin_bottom = 278.0
+text = "Seed"
+
+[node name="Octaves" type="HSlider" parent="TestUI/TestHud/NoiseControl"]
+margin_left = 88.0
+margin_top = 281.0
+margin_right = 246.0
+margin_bottom = 297.0
+hint_tooltip = "Octaves"
+min_value = 1.0
+max_value = 9.0
+value = 3.0
+
+[node name="Label2" type="Label" parent="TestUI/TestHud/NoiseControl"]
+margin_top = 272.0
+margin_right = 82.0
+margin_bottom = 298.0
+text = "Octaves"
+
+[node name="Period" type="HSlider" parent="TestUI/TestHud/NoiseControl"]
+margin_left = 76.0
+margin_top = 300.0
+margin_right = 246.0
+margin_bottom = 316.0
+hint_tooltip = "Period"
+min_value = 0.1
+max_value = 256.0
+step = 0.1
+value = 64.0
+
+[node name="Label3" type="Label" parent="TestUI/TestHud/NoiseControl"]
+margin_top = 292.0
+margin_right = 66.0
+margin_bottom = 318.0
+text = "Period"
+
+[node name="Persistence" type="HSlider" parent="TestUI/TestHud/NoiseControl"]
+margin_left = 88.0
+margin_top = 321.0
+margin_right = 246.0
+margin_bottom = 337.0
+hint_tooltip = "Persistance"
+min_value = 0.001
+max_value = 1.0
+step = 0.001
+value = 0.5
+
+[node name="Label4" type="Label" parent="TestUI/TestHud/NoiseControl"]
+margin_top = 312.0
+margin_right = 124.0
+margin_bottom = 338.0
+text = "Persist"
+
+[node name="Lacunarity" type="HSlider" parent="TestUI/TestHud/NoiseControl"]
+margin_left = 84.0
+margin_top = 341.0
+margin_right = 246.0
+margin_bottom = 357.0
+hint_tooltip = "Lacunarity"
+min_value = 0.01
+max_value = 4.0
+step = 0.01
+value = 2.0
+
+[node name="Label5" type="Label" parent="TestUI/TestHud/NoiseControl"]
+margin_top = 332.0
+margin_right = 124.0
+margin_bottom = 358.0
+text = "Lacuna"
+
+[node name="TraumaControl" type="Control" parent="TestUI/TestHud"]
+margin_top = 432.0
+margin_right = 248.0
+margin_bottom = 501.0
+
+[node name="TraumaTime" type="HSlider" parent="TestUI/TestHud/TraumaControl"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -184.0
+margin_top = 9.0
+margin_bottom = 25.0
+hint_tooltip = "Seed"
+max_value = 10.0
+step = 0.1
+
+[node name="Label" type="Label" parent="TestUI/TestHud/TraumaControl"]
+margin_right = 74.0
+margin_bottom = 26.0
+text = "Time"
+
+[node name="TraumaStrength" type="HSlider" parent="TestUI/TestHud/TraumaControl"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -144.0
+margin_top = 29.0
+margin_bottom = 45.0
+hint_tooltip = "Seed"
+max_value = 1.0
+step = 0.01
+
+[node name="Label2" type="Label" parent="TestUI/TestHud/TraumaControl"]
+margin_top = 20.0
+margin_right = 92.0
+margin_bottom = 46.0
+text = "Strenght"
+
+[node name="ShakeDecay" type="HSlider" parent="TestUI/TestHud/TraumaControl"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -176.0
+margin_top = 49.0
+margin_bottom = 65.0
+hint_tooltip = "Seed"
+max_value = 1.0
+step = 0.01
+
+[node name="Label3" type="Label" parent="TestUI/TestHud/TraumaControl"]
+margin_top = 40.0
+margin_right = 60.0
+margin_bottom = 66.0
+text = "Decay"
+
+[node name="Panel" type="Panel" parent="TestUI/TestHud"]
+margin_left = 73.0
+margin_top = 163.0
+margin_right = 173.0
+margin_bottom = 212.0
+
+[node name="AddTraumaBtn" type="Button" parent="TestUI/TestHud"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 73.0
+margin_top = -417.0
+margin_right = 173.0
+margin_bottom = -368.0
+theme = ExtResource( 1 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.945098, 0.945098, 0.945098, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "tresi"
+
+[connection signal="mouse_entered" from="TestUI/TestToggle" to="." method="_on_CheckBox_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestToggle" to="." method="_on_CheckBox_mouse_exited"]
+[connection signal="toggled" from="TestUI/TestToggle" to="." method="_on_CheckBox_toggled"]
+[connection signal="mouse_entered" from="TestUI/TestHud/ResetViewBtn" to="." method="_on_ResetView_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/ResetViewBtn" to="." method="_on_ResetView_mouse_exited"]
+[connection signal="pressed" from="TestUI/TestHud/ResetViewBtn" to="." method="_on_ResetView_pressed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/ZoomSlider" to="." method="_on_ZoomSlider_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/ZoomSlider" to="." method="_on_ZoomSlider_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/ZoomSlider" to="." method="_on_ZoomSlider_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/TimeSlider" to="." method="_on_TimeSlider_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/TimeSlider" to="." method="_on_TimeSlider_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/TimeSlider" to="." method="_on_TimeSlider_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/NoiseControl" to="." method="_on_Control_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/NoiseControl" to="." method="_on_Control_mouse_exited"]
+[connection signal="mouse_entered" from="TestUI/TestHud/NoiseControl/Seed" to="." method="_on_SeedSlider_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/NoiseControl/Seed" to="." method="_on_SeedSlider_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/NoiseControl/Seed" to="." method="_on_Seed_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/NoiseControl/Octaves" to="." method="_on_Octaves_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/NoiseControl/Octaves" to="." method="_on_Octaves_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/NoiseControl/Octaves" to="." method="_on_Octaves_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/NoiseControl/Period" to="." method="_on_Period_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/NoiseControl/Period" to="." method="_on_Period_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/NoiseControl/Period" to="." method="_on_Period_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/NoiseControl/Persistence" to="." method="_on_Persistance_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/NoiseControl/Persistence" to="." method="_on_Persistance_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/NoiseControl/Persistence" to="." method="_on_Persistence_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/NoiseControl/Lacunarity" to="." method="_on_Lacunarity_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/NoiseControl/Lacunarity" to="." method="_on_Lacunarity_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/NoiseControl/Lacunarity" to="." method="_on_Lacunarity_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/TraumaControl/TraumaTime" to="." method="_on_TraumaTime_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/TraumaControl/TraumaTime" to="." method="_on_TraumaTime_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/TraumaControl/TraumaTime" to="." method="_on_TraumaTime_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/TraumaControl/TraumaStrength" to="." method="_on_TraumaStrength_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/TraumaControl/TraumaStrength" to="." method="_on_TraumaStrength_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/TraumaControl/TraumaStrength" to="." method="_on_TraumaStrength_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/TraumaControl/ShakeDecay" to="." method="_on_ShakeDecay_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/TraumaControl/ShakeDecay" to="." method="_on_ShakeDecay_mouse_exited"]
+[connection signal="value_changed" from="TestUI/TestHud/TraumaControl/ShakeDecay" to="." method="_on_ShakeDecay_value_changed"]
+[connection signal="mouse_entered" from="TestUI/TestHud/AddTraumaBtn" to="." method="_on_AddTraumaBtn_mouse_entered"]
+[connection signal="mouse_exited" from="TestUI/TestHud/AddTraumaBtn" to="." method="_on_AddTraumaBtn_mouse_exited"]
+[connection signal="pressed" from="TestUI/TestHud/AddTraumaBtn" to="." method="_on_AddTraumaBtn_pressed"]
